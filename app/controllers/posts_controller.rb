@@ -8,8 +8,10 @@ class PostsController < ApplicationController
   # end
   
   def create
-    Post.create(content: params[ :content])
-    redirect_to action: :index  # 追記する
+    # 新たに投稿されたメモの内容をpostに格納しています。
+    post = Post.create(content: params[ :content])
+    # renderはレスポンスを出力してくれてjsonのポストの中身を渡す
+    render json:{ post: post }
   end
   
 end
